@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Game</title>
+<link rel="stylesheet" type="text/css" href="Minigames.css">
+<script type="text/javascript">
+	var word = "coding";
+		var guessLet = ["_", "_", "_", "_", "_", "_"];
+		for(var i = 0; i < 6; ++i){
+			var c = word.charAt(i);
+			var user_c;
+			if(c === user_c){
+
+			}
+		}
+		
+			
+		
+		var magicNum = Math.floor(Math.random() * 21);
+		var chances = 6;
+		function guessingGame(){
+			if(chances > 0){
+				var input = parseInt(document.getElementById('guess').value);
+				if (input > magicNum){
+					document.getElementById('gameMsg').innerHTML = "Too high";
+					chances = chances - 1;
+				}
+				else if(input < magicNum){
+					document.getElementById('gameMsg').innerHTML = "Too low";
+					chances = chances - 1;
+				}
+				else{
+					document.getElementById('gameMsg').innerHTML = "You guessed correctly";
+				}
+				document.getElementById('chances').innerHTML = "Chances: " + String(chances);
+			}
+			else{
+				document.getElementById('gameMsg').innerHTML = "Game Over!";
+			}
+
+		}
+		function restart(){
+			magicNum = Math.floor(Math.random() * 21);
+			chances = 6;
+			document.getElementById('chances').innerHTML = "Chances: " + String(chances);
+			document.getElementById('gameMsg').innerHTML = "From 0 to 20 guess a number";
+		}
+	
+		var board = [["_","_","_"],
+					 ["_","_","_"],
+					 ["_","_","_"]];
+
+		function play(){
+			var r = parseInt(document.getElementById('row').value);
+			var c = parseInt(document.getElementById('col').value);
+			board[r][c] = "O";
+			var compR = Math.floor(Math.random() * 3);
+			var compC = Math.floor(Math.random() * 3);
+			while(board[compR][compC] != "_"){
+				compR = Math.floor(Math.random() * 3);
+			    compC = Math.floor(Math.random() * 3);
+			}
+			board[compR][compC] = "X";
+			var row1 = board[0][0] + " " + board[0][1] + " " + board[0][2];
+			var row2 = board[1][0] + " " + board[1][1] + " " + board[1][2];
+			var row3 = board[2][0] + " " + board[2][1] + " " + board[2][2];
+			document.getElementById('row1').innerHTML = row1;
+			document.getElementById('row2').innerHTML = row2;
+			document.getElementById('row3').innerHTML = row3;
+		}
+	var word = "vortex";
+		var guessLet = ["_", "_", "_", "_", "_", "_"];
+		var letCorrect = 0;
+		function hangman(){
+			var user_c = document.getElementById('hangman').value;
+			var correct = false;
+			for(var i = 0; i < 6; ++i){
+				var c = word.charAt(i);
+				if(c === user_c){
+					correct = true;
+					guessLet[i] = c;
+					letCorrect++;
+				}
+			}
+			var gameMsg = "";
+			if(letCorrect === word.length){
+				gameMsg = "You won!";
+			}
+			else if(correct){
+				gameMsg = "You guessed the letter correctly";
+			}
+			else{
+				gameMsg = "You guessed the letter incorrectly";
+			}
+			document.getElementById('hangmanMsg').innerHTML = gameMsg;
+			var wordGuessed = "";
+			for(var i = 0; i < 6; ++i){
+				wordGuessed = wordGuessed + guessLet[i] + " ";
+			}
+			document.getElementById('hangmanWord').innerHTML = wordGuessed;
+		}
+</script>
+</head>
+
+<body>
+	
+	<div class="center"><img src="http://www.9minecraft.net/wp-content/uploads/2018/04/Minigame-Blitz-Map-Thumbnail.jpg"  ></div>
+	<div><p id="gameMsg">You guessed correctly</p>
+	<p id="chances">Chances: 3</p>
+	<input type="text" id="guess">
+	<button type="button" onclick="guessingGame()">Submit Guess</button>
+	<button type="button" onclick="restart()">Restart</button></div>
+	<br>
+	<br>
+	<button type="button" onclick="clickMe();">Click me!</button>
+	
+		
+	
+
+	<h2>Tic Tac Toe</h2>
+	<p id="row1">_ _ _</p>
+	<p id="row2">_ _ _</p>
+	<p id="row3">_ _ _</p>
+	<input id="row" type="text" placeholder="row">
+	<input id="col" type="text" placeholder="col">
+	<button onclick="play()" type="button">Submit</button>
+	<body>
+	
+	<h2>Hangman</h2>
+	<p id="hangmanWord">_ _ _ _ _ _</p>
+	<p id="hangmanMsg">Guess a Letter</p>
+	<input id="hangman" type="text">
+	<button onclick="hangman()" type="button">Store</button>
+
+</body>
+
+
+
+</body>
+</html>
